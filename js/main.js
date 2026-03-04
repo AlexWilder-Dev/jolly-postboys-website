@@ -5,15 +5,7 @@
 (function () {
     'use strict';
 
-    var pages = {
-        home:      document.getElementById('page-home'),
-        events:    document.getElementById('page-events'),
-        menu:      document.getElementById('page-menu'),
-        contact:   document.getElementById('page-contact'),
-        about:     document.getElementById('page-about'),
-        allergens: document.getElementById('page-allergens'),
-        privacy:   document.getElementById('page-privacy'),
-    };
+    var pages = {};
 
     var navLinks    = document.querySelectorAll('[data-page]');
     var navToggle   = document.getElementById('nav-toggle');
@@ -347,6 +339,15 @@
     // ── Init ─────────────────────────────────────────────────────
 
     function init() {
+        // Build pages map here so all elements are guaranteed to be in the DOM
+        pages.home      = document.getElementById('page-home');
+        pages.events    = document.getElementById('page-events');
+        pages.menu      = document.getElementById('page-menu');
+        pages.contact   = document.getElementById('page-contact');
+        pages.about     = document.getElementById('page-about');
+        pages.allergens = document.getElementById('page-allergens');
+        pages.privacy   = document.getElementById('page-privacy');
+
         var startPage = getPageFromHash() || 'home';
 
         // Set initial state without triggering the page enter animation
