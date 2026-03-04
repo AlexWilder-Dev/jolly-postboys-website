@@ -81,6 +81,11 @@
         // Let the IO pick up elements that are now in view
         // (a small delay lets the CSS page animation begin first)
         setTimeout(observeNewPage, 80);
+
+        // Fetch live content from Sanity for relevant pages
+        if (pageId === 'menu'   && window.loadMenu)         window.loadMenu();
+        if (pageId === 'events' && window.loadEvents)       window.loadEvents();
+        if (pageId === 'home'   && window.loadHomeSpecials) window.loadHomeSpecials();
     }
 
     document.addEventListener('click', function (e) {
@@ -364,6 +369,11 @@
 
         // Small delay so the browser has painted before observing
         setTimeout(observeAll, 100);
+
+        // Load Sanity content for the initial page
+        if (startPage === 'menu'   && window.loadMenu)         window.loadMenu();
+        if (startPage === 'events' && window.loadEvents)       window.loadEvents();
+        if (startPage === 'home'   && window.loadHomeSpecials) window.loadHomeSpecials();
     }
 
     if (document.readyState === 'loading') {

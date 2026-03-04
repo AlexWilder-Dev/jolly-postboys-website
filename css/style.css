@@ -865,6 +865,24 @@ p { font-size: 0.875rem; line-height: 1.75; }
 }
 .menu-chapter-note a { color: var(--cream-mid); text-decoration: underline; }
 
+.menu-loading {
+    text-align: center;
+    padding: 4rem 0;
+    color: var(--cream-mid);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.menu-row-dietary {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-left: 0.3em;
+}
+
 .menu-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; }
 .menu-list--3col { grid-template-columns: 1fr 1fr 1fr; }
 

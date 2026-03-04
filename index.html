@@ -240,7 +240,7 @@
             <div class="container">
                 <h2 class="section-heading">Weeknight Specials!</h2>
                 <p class="section-sub">Every week &bull; Tue, Wed &amp; Thu</p>
-                <div class="specials-grid">
+                <div class="specials-grid" id="home-specials-grid">
 
                     <div class="special-card">
                         <div class="special-card-header">
@@ -354,83 +354,10 @@
             <div class="container">
 
                 <h2 class="events-section-title">Weeknight Specials</h2>
-                <div class="events-grid">
-
-                    <div class="event-card event-card--regular">
-                        <div class="event-day">Tuesday</div>
-                        <div class="event-body">
-                            <span class="event-badge">Food Deal</span>
-                            <h3>Twos-Day Burgers</h3>
-                            <div class="event-time">Every Tuesday &bull; 4&ndash;9pm</div>
-                            <p>2 burgers for £20. Excludes Burger of the Month.</p>
-                        </div>
-                    </div>
-
-                    <div class="event-card event-card--regular">
-                        <div class="event-day">Wednesday</div>
-                        <div class="event-body">
-                            <span class="event-badge">Food Deal</span>
-                            <h3>3 for £18 Sharers</h3>
-                            <div class="event-time">Every Wednesday &bull; 4&ndash;9pm</div>
-                            <p>Any 3 starters or sharers for £18.</p>
-                        </div>
-                    </div>
-
-                    <div class="event-card event-card--regular">
-                        <div class="event-day">Thursday</div>
-                        <div class="event-body">
-                            <span class="event-badge">Drinks Deal</span>
-                            <h3>Thirst-Day</h3>
-                            <div class="event-time">Every Thursday &bull; 4&ndash;11pm</div>
-                            <p>£4 house lager or cask pint. £5 house wine 175ml.</p>
-                        </div>
-                    </div>
-
-                    <div class="event-card event-card--regular">
-                        <div class="event-day">Sunday</div>
-                        <div class="event-body">
-                            <span class="event-badge">Food</span>
-                            <h3>Sunday Roast</h3>
-                            <div class="event-time">Every Sunday &bull; 12&ndash;6pm</div>
-                            <p>All the trimmings. Booking recommended.</p>
-                            <p class="event-tip">Call 01865 777767 to book.</p>
-                        </div>
-                    </div>
-
-                </div>
+                <div class="events-grid" id="events-specials-grid"></div>
 
                 <h2 class="events-section-title">Regular Events</h2>
-                <div class="events-grid">
-
-                    <div class="event-card">
-                        <div class="event-body" style="padding:1.5rem;">
-                            <span class="event-badge">Quiz</span>
-                            <h3>Pub Quiz Night</h3>
-                            <div class="event-time">Monthly &bull; Check Instagram for dates</div>
-                            <p>General knowledge, music rounds and more. Teams of up to 6.</p>
-                            <p class="event-tip">@jollypostboysoxford for the next date.</p>
-                        </div>
-                    </div>
-
-                    <div class="event-card">
-                        <div class="event-body" style="padding:1.5rem;">
-                            <span class="event-badge">Live Music</span>
-                            <h3>Live Music Nights</h3>
-                            <div class="event-time">Regular &bull; Check Instagram for dates</div>
-                            <p>Local artists and bands. Follow us on Instagram for upcoming acts.</p>
-                        </div>
-                    </div>
-
-                    <div class="event-card">
-                        <div class="event-body" style="padding:1.5rem;">
-                            <span class="event-badge">Community</span>
-                            <h3>Community Events</h3>
-                            <div class="event-time">Throughout the year</div>
-                            <p>From charity fundraisers to seasonal celebrations — we're at the heart of Florence Park.</p>
-                        </div>
-                    </div>
-
-                </div>
+                <div class="events-grid" id="events-regular-grid"></div>
 
                 <div class="private-hire-banner">
                     <h3>Private Hire</h3>
@@ -476,7 +403,7 @@
         </nav>
 
         <div class="menu-body">
-            <div class="container">
+            <div class="container" id="menu-chapters">
 
                 <!-- Starters -->
                 <section class="menu-chapter fade-in" id="m-starters">
@@ -898,6 +825,7 @@
         </div>
     </footer>
 
+    <script src="js/sanity.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
