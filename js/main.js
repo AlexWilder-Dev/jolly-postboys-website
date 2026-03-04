@@ -255,6 +255,7 @@
             observer.observe(el);
         });
     }
+    window.observeAll = observeAll;
 
     function observeNewPage() {
         // Called after a page switch — picks up newly-visible elements
