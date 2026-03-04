@@ -6,11 +6,13 @@
     'use strict';
 
     var pages = {
-        home:    document.getElementById('page-home'),
-        events:  document.getElementById('page-events'),
-        menu:    document.getElementById('page-menu'),
-        contact: document.getElementById('page-contact'),
-        about:   document.getElementById('page-about'),
+        home:      document.getElementById('page-home'),
+        events:    document.getElementById('page-events'),
+        menu:      document.getElementById('page-menu'),
+        contact:   document.getElementById('page-contact'),
+        about:     document.getElementById('page-about'),
+        allergens: document.getElementById('page-allergens'),
+        privacy:   document.getElementById('page-privacy'),
     };
 
     var navLinks    = document.querySelectorAll('[data-page]');
@@ -19,19 +21,23 @@
     var announcer   = document.getElementById('page-announcer');
 
     var pageTitles = {
-        home:    'The Jolly Postboys | Pub & Kitchen in Florence Park, Oxford',
-        events:  'What\'s On | The Jolly Postboys',
-        menu:    'Menu | The Jolly Postboys',
-        contact: 'Contact | The Jolly Postboys',
-        about:   'About Us | The Jolly Postboys',
+        home:      'The Jolly Postboys | Pub & Kitchen in Florence Park, Oxford',
+        events:    'What\'s On | The Jolly Postboys',
+        menu:      'Menu | The Jolly Postboys',
+        contact:   'Contact | The Jolly Postboys',
+        about:     'About Us | The Jolly Postboys',
+        allergens: 'Allergen Information | The Jolly Postboys',
+        privacy:   'Privacy Policy | The Jolly Postboys',
     };
 
     var pageNames = {
-        home:    'Home',
-        events:  'What\'s On',
-        menu:    'Menu',
-        contact: 'Contact',
-        about:   'About Us',
+        home:      'Home',
+        events:    'What\'s On',
+        menu:      'Menu',
+        contact:   'Contact',
+        about:     'About Us',
+        allergens: 'Allergen Information',
+        privacy:   'Privacy Policy',
     };
 
 
@@ -381,5 +387,21 @@
     } else {
         init();
     }
+
+
+    // ── Cookie banner ─────────────────────────────────────────────
+
+    (function () {
+        var banner = document.getElementById('cookie-banner');
+        var btn    = document.getElementById('cookie-accept');
+        if (!banner || !btn) return;
+        if (!localStorage.getItem('jpb_cookie_ok')) {
+            banner.hidden = false;
+        }
+        btn.addEventListener('click', function () {
+            localStorage.setItem('jpb_cookie_ok', '1');
+            banner.hidden = true;
+        });
+    }());
 
 })();
