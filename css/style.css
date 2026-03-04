@@ -1342,10 +1342,10 @@ p { font-size: 0.875rem; line-height: 1.75; }
     .about-sidebar { grid-template-columns: repeat(4, 1fr); }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     :root { --nav-height: 60px; }
 
-    /* Header: hide instagram, push hamburger to far right */
+    /* Header: switch to hamburger */
     .nav-toggle { display: flex; margin-left: auto; }
     .nav-instagram { display: none; }
 
@@ -1366,7 +1366,9 @@ p { font-size: 0.875rem; line-height: 1.75; }
     .main-nav.open { transform: translateY(0); }
     .nav-link { width: 100%; padding: 0.75rem 1rem; }
     .nav-link::after { display: none; }
+}
 
+@media (max-width: 768px) {
     /* Jump nav: don't wrap — scroll horizontally instead */
     .menu-jump-links { flex-wrap: nowrap; justify-content: flex-start; }
 
