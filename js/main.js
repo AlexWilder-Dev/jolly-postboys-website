@@ -285,6 +285,89 @@
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 
+    // ── Open / Closed status ─────────────────────────────────────
+
+    function initOpenStatus() {
+        // Opening hours in UK local time [openHour, closeHour], 24h
+        // null = closed all day
+        var HOURS = {
+            0: [12, 19],  // Sun  12–7pm
+            1: null,      // Mon  closed
+            2: [16, 23],  // Tue  4–11pm
+            3: [16, 23],  // Wed  4–11pm
+            4: [16, 23],  // Thu  4–11pm
+            5: [15, 23],  // Fri  3–11pm
+            6: [12, 23],  // Sat  12–11pm
+        };
+
+        var DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        var SOON = 45; // minutes before opening to show "Opening Soon"
+
+        function fmt(h) {
+            if (h === 12) return '12pm';
+            if (h === 0 || h === 24) return 'midnight';
+            return h > 12 ? (h - 12) + 'pm' : h + 'am';
+        }
+
+        function getUKNow() {
+            var d = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/London' }));
+            return { day: d.getDay(), mins: d.getHours() * 60 + d.getMinutes() };
+        }
+
+        function nextOpen(fromDay) {
+            for (var i = 1; i <= 7; i++) {
+                var d = (fromDay + i) % 7;
+                if (HOURS[d]) {
+                    return (i === 1 ? 'Tomorrow' : DAYS[d]) + ' ' + fmt(HOURS[d][0]);
+                }
+            }
+        }
+
+        function update() {
+            var dot   = document.getElementById('open-dot');
+            var label = document.getElementById('open-status-label');
+            var sub   = document.getElementById('open-status-sub');
+            if (!dot || !label || !sub) return;
+
+            var uk = getUKNow();
+            var h  = HOURS[uk.day];
+
+            dot.classList.remove('is-open', 'is-soon', 'is-closed');
+
+            if (h) {
+                var openM  = h[0] * 60;
+                var closeM = h[1] * 60;
+
+                if (uk.mins >= openM && uk.mins < closeM) {
+                    dot.classList.add('is-open');
+                    label.textContent = 'Open Now';
+                    sub.textContent   = 'Closes ' + fmt(h[1]);
+                } else if (uk.mins < openM && openM - uk.mins <= SOON) {
+                    dot.classList.add('is-soon');
+                    label.textContent = 'Opening Soon';
+                    var left = openM - uk.mins;
+                    sub.textContent = 'Opens in ' + left + ' min' + (left === 1 ? '' : 's');
+                } else if (uk.mins >= closeM) {
+                    dot.classList.add('is-closed');
+                    label.textContent = 'Closed';
+                    sub.textContent   = 'Opens ' + nextOpen(uk.day);
+                } else {
+                    dot.classList.add('is-closed');
+                    label.textContent = 'Closed';
+                    sub.textContent   = 'Opens ' + fmt(h[0]) + ' today';
+                }
+            } else {
+                dot.classList.add('is-closed');
+                label.textContent = 'Closed';
+                sub.textContent   = 'Opens ' + nextOpen(uk.day);
+            }
+        }
+
+        update();
+        setInterval(update, 60000);
+    }
+
+
     // ── Chalkboard typewriter ─────────────────────────────────────
 
     function initChalkboard() {
@@ -374,6 +457,7 @@
         buildObserver();
         setupFadeIns();
         initChalkboard();
+        initOpenStatus();
 
         // Small delay so the browser has painted before observing
         setTimeout(observeAll, 100);

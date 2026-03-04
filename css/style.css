@@ -424,6 +424,27 @@ p { font-size: 0.875rem; line-height: 1.75; }
     transform: translateY(-2px);
 }
 .meta-icon { font-size: 1rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+/* Open/Closed status dot */
+.open-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 0.35rem;
+    background: var(--cream-dim);
+    transition: background 0.4s;
+}
+.open-dot.is-open {
+    background: #5cb85c;
+    animation: openPulse 2.2s ease-in-out infinite;
+}
+.open-dot.is-soon  { background: #e8a020; }
+.open-dot.is-closed { background: #c04040; }
+@keyframes openPulse {
+    0%, 100% { box-shadow: 0 0 0 0   rgba(92,184,92,0.55); }
+    50%       { box-shadow: 0 0 0 7px rgba(92,184,92,0);    }
+}
 .meta-box strong {
     display: block;
     font-family: var(--font-mono);
