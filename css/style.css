@@ -846,6 +846,9 @@ p { font-size: 0.875rem; line-height: 1.75; }
     margin-bottom: 4.5rem;
     scroll-margin-top: calc(var(--nav-height) + 62px);
 }
+.menu-chapter.visible {
+    animation: pageEnter 0.55s var(--ease-out) both;
+}
 .menu-chapter-header {
     display: flex;
     align-items: baseline;
@@ -954,8 +957,10 @@ p { font-size: 0.875rem; line-height: 1.75; }
     color: var(--cream-light);
     padding-bottom: 0.65rem;
     border-bottom: 2px solid rgba(200,160,48,0.35);
+    margin-top: 3.5rem;
     margin-bottom: 2rem;
 }
+.events-section-title:first-child { margin-top: 0; }
 .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1032,6 +1037,50 @@ p { font-size: 0.875rem; line-height: 1.75; }
     line-height: 1.65;
 }
 .event-tip { font-style: italic; font-size: 0.7rem !important; }
+
+/* ── Poster-style event cards ──────────────────────────────── */
+#events-regular-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 320px));
+    align-items: start;
+    justify-content: center;
+}
+.event-card--poster {
+    display: flex;
+    flex-direction: column;
+}
+.event-poster-img {
+    overflow: hidden;
+    border-radius: var(--radius) var(--radius) 0 0;
+    line-height: 0;
+}
+.event-poster-img img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    transition: transform 0.3s var(--ease-out);
+}
+.event-card--poster:hover .event-poster-img img {
+    transform: scale(1.03);
+}
+.event-poster-caption {
+    padding: 1rem 1.25rem 1.2rem;
+    background: var(--dark);
+    border-top: 2px solid var(--gold);
+    flex: 1;
+}
+.event-poster-caption h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--gold);
+    margin: 0 0 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.event-poster-caption .event-time {
+    color: var(--cream-mid);
+}
+
 .private-hire-banner {
     margin-top: 2.5rem;
     background: var(--cream-light);

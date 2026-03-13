@@ -137,6 +137,12 @@
 
     var EVENTS_GROQ = '*[_type == "event" && active == true] | order(_createdAt asc) { _id, title, description, recurring, recurringDay, recurringFrequency, time, date }';
 
+    var EVENT_IMAGES = {
+        'event-live-music':   'img/JPB-Jam-Night.webp',
+        'event-sunday-roast': 'img/Rocksteady-Roast-Frame-Insta-Portrait-1080-x-1350-px.webp',
+        'event-community':    'img/JPB-Board-Games-Club.webp'
+    };
+
     function capFirst(str) { return str ? str.charAt(0).toUpperCase() + str.slice(1) : ''; }
 
     window.loadEvents = function () {
@@ -164,14 +170,18 @@
             query(EVENTS_GROQ).then(function (events) {
                 if (!events || !events.length) return;
                 regularGrid.innerHTML = events.map(function (e) {
+                    var imgSrc = EVENT_IMAGES[e._id];
+                    if (!imgSrc) return '';
                     var when = e.recurring
                         ? capFirst(e.recurringFrequency || '') + (e.recurringDay ? ' ' + capFirst(e.recurringDay) : '') + (e.time ? ' &bull; ' + esc(e.time) : '')
                         : esc(e.time || e.date || '');
-                    return '<div class="event-card">' +
-                        '<div class="event-body" style="padding:1.5rem;">' +
+                    return '<div class="event-card event-card--poster">' +
+                        '<div class="event-poster-img">' +
+                        '<img src="' + imgSrc + '" alt="' + esc(e.title) + '">' +
+                        '</div>' +
+                        '<div class="event-poster-caption">' +
                         '<h3>' + esc(e.title) + '</h3>' +
-                        '<div class="event-time">' + when + '</div>' +
-                        (e.description ? '<p>' + esc(e.description) + '</p>' : '') +
+                        (when ? '<div class="event-time">' + when + '</div>' : '') +
                         '</div></div>';
                 }).join('');
             });
